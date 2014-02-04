@@ -7,9 +7,6 @@
     "cryptography"
   ],
   "main": "./lib/Message.js",
-  "dependencies": {
-    "crypto-hashing": "0.1.x"
-  },
   "devDependencies": {
     "mocha": "1.*"
   },
