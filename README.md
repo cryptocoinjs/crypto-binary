@@ -10,7 +10,7 @@ Assemble a binary message out of chunks of data. All the methods return the buil
 var b = new MessageBuilder();
 b.putInt8(255).putInt16(0xbeef);
 b.put(new Buffer([1,2,3,4,5]));
-console.log(b.raw.toString('hex')); // 'ffbeef0102030405'
+console.log(b.raw().toString('hex')); // 'ffbeef0102030405'
 ```
 
 * **putInt[8,16,32]**: Append an integer of the specified bit length to the message
