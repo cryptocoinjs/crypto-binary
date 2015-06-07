@@ -42,4 +42,16 @@ describe('Builder', function() {
     b.putVarString('Hello');
     assert.equal(b.raw().toString('hex'), '0548656c6c6f');
   });
+  it('should grow as needed', function() {
+    var i
+    for (i=0; i<10000; i++) b.put(1)
+    assert.equal(b.cursor, 10000)
+    for (i=0; i<5000; i++) b.put(new Buffer([2, 3]))
+    assert.equal(b.cursor, 20000)
+    b.putInt8(255)
+    assert.equal(b.cursor, 20001)
+    var str = b.raw().toString('hex')
+    assert.equal(str.length, 40002)
+    assert(/^(01){10000}(0203){5000}ff$/.test(str))
+  })
 });
