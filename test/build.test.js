@@ -54,4 +54,9 @@ describe('Builder', function() {
     assert.equal(str.length, 40002)
     assert(/^(01){10000}(0203){5000}ff$/.test(str))
   })
+  it('should limit the maximum size', function() {
+    var b = new Builder(15000)
+    for (var i=0; i<15000; i++) b.put(1)
+    assert.throws(function(){ b.put(1) }, /Message size is limited/)
+  })
 });
